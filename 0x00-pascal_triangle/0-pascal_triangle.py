@@ -9,7 +9,7 @@ def pascal_triangle(n):
         return []
 
     """Initialize the triangle with the first row"""
-    triangle = [[1]]
+    pascal_triangle = [[1]]
 
     """ Loop from 1 to n-1 """
     for i in range(1, n):
@@ -17,12 +17,12 @@ def pascal_triangle(n):
         """ Loop from 1 to i-1 """
         for j in range(1, i):
             # Calculate the sum
-            s = triangle[i-1][j] + triangle[i-1][j-1]
+            s = pascal_triangle[i-1][j] + pascal_triangle[i-1][j-1]
             """ Append the sum to the current row """
             row.append(s)
         """ Append the last element to the current row """
         row.append(1)
         """ Append the current row to the triangle """
-        triangle.append(row)
+        pascal_triangle.append(row)
     """ Return the triangle """
-    return triangle
+    return pascal_triangle
