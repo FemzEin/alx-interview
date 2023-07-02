@@ -1,10 +1,18 @@
 #!/usr/bin/python3
+"""
+	Code to print Pascal Triangle on Terminal
+"""
+
 
 def pascal_triangle(n):
-  # Returns an empty list if n <= 0
-  if n <= 0:
+""" 
+	Returns an empty list if n <= 0
+"""
+    if n <= 0:
     return []
-  # Initialize the triangle with the first row
+"""
+	Initialize the triangle with the first row
+"""
   triangle = [[1]]
   # Loop from 1 to n-1
   for i in range(1, n):
@@ -22,4 +30,3 @@ def pascal_triangle(n):
     triangle.append(row)
   # Return the triangle
   return triangle
-
