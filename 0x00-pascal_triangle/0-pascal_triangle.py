@@ -5,24 +5,25 @@ Code to print Pascal Triangle on Terminal
 
 
 def pascal_triangle(n):
+    """returns a list of lists of numbers
+    representing the pascals triangle"""
     if n <= 0:
         return []
 
-    """Initialize the triangle with the first row"""
-    pascal_triangle = [[1]]
+    pascal_triangle = [0] * n
 
-    """ Loop from 1 to n-1 """
-    for i in range(1, n):
-        row = [1]
-        """ Loop from 1 to i-1 """
+    for i in range(n):
+        # define a row and fill first and last index with 1
+        new_row = [0] * (i+1)
+        new_row[0] = 1
+        new_row[len(new_row) - 1] = 1
+
         for j in range(1, i):
-            # Calculate the sum
-            s = pascal_triangle[i-1][j] + pascal_triangle[i-1][j-1]
-            """ Append the sum to the current row """
-            row.append(s)
-        """ Append the last element to the current row """
-        row.append(1)
-        """ Append the current row to the triangle """
-        pascal_triangle.append(row)
-    """ Return the triangle """
+            if j > 0 and j < len(new_row):
+                a = pascal_triangle[i - 1][j]
+                b = pascal_triangle[i - 1][j - 1]
+                new_row[j] = a + b
+
+        pascal_triangle[i] = new_row
+
     return pascal_triangle
