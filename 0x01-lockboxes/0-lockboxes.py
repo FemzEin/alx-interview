@@ -1,17 +1,34 @@
 #!/usr/bin/python3
+'''
+Alx interview project - lockboxes
+'''
+
 
 def canUnlockAll(boxes):
-    n = len(boxes)  # Total number of boxes
-    unlocked = [False] * n  # List to track if a box is unlocked
-    unlocked[0] = True  # The first box is unlocked initially
+    '''determines if all the boxes can be opened or not
+    Returns:
+        True: all boxes can be opened
+        False: not all boxes can be opened
+    '''
+    length = len(boxes)
+    keys = set()
+    opened_boxes = []
+    i = 0
 
-    # Iterate through each box and its keys
-    for box_number, keys in enumerate(boxes):
-        if unlocked[box_number]:
-            # Mark all the boxes that can be opened with the current keys
-            for key in keys:
-                if key < n:
-                    unlocked[key] = True
+    while i < length:
+        oldi = i
+        opened_boxes.append(i)
+        keys.update(boxes[i])
+        for key in keys:
+            if key != 0 and key < length and key not in opened_boxes:
+                i = key
+                break
+        if oldi != i:
+            continue
+        else:
+            break
 
-    # Check if all the boxes are unlocked
-    return all(unlocked)
+    for i in range(length):
+        if i not in opened_boxes and i != 0:
+            return False
+    return True
